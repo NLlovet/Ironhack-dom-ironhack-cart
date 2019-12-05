@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./css/style.css">
   <title>Ironhack cart</title>
 </head>
+
 <body>
   <h1>Ironhack Cart</h1>
 
@@ -19,25 +21,50 @@
       </tr>
     </thead>
     <tbody>
+      <!-- first product -->
       <tr class="product">
         <td class="name">
           <span>IronBubble-head</span>
         </td>
-    
+
         <td class="pu">
           $<span>25.00</span>
         </td>
-    
+
         <td class="qty">
           <label>
-            <input id="quant"type="number" value="0" min="0">
+            <input id="quant" type="number" value="0" min="0">
           </label>
         </td>
-    
+
         <td class="subtot">
           $<span>0</span>
         </td>
-    
+
+        <td class="rm">
+          <button class="btn btn-delete">Delete</button>
+        </td>
+      </tr>
+      <!-- second product -->
+      <tr class="product">
+        <td class="name">
+          <span>IronBubble-head</span>
+        </td>
+
+        <td class="pu">
+          $<span>15.00</span>
+        </td>
+
+        <td class="qty">
+          <label>
+            <input id="quant" type="number" value="0" min="0">
+          </label>
+        </td>
+
+        <td class="subtot">
+          $<span>0</span>
+        </td>
+
         <td class="rm">
           <button class="btn btn-delete">Delete</button>
         </td>
@@ -59,14 +86,16 @@
       </tr>
     </tfoot> -->
 
+
   </table>
 
   <p class="cta">
     <button id="calc" class="btn btn-success" onclick="calcAll()">Calculate prices</button>
   </p>
 
-  <h2>Total: $<span id = "total">0</span></h2>
+  <h2>Total: $<span id="total">0</span></h2>
 
   <script type="text/javascript" src="./js/index.js"></script>
 </body>
+
 </html>
