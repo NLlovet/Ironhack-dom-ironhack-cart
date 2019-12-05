@@ -1,47 +1,59 @@
 var $cart = document.querySelector('#cart tbody');
 var $calc = document.getElementById('calc');
+var $delet = document.getElementsByClassName('btn-delete');
+let all = document.getElementsByClassName('product');
+let ar = []; 
 
 function updateSubtot($product) {
   // Iteration 1.1
-  let priceUnit = document.getElementsByClassName('pu');
-  let num = priceUnit[1].innerText;
-
-  num = priceUnit[1].innerText.replace('$', "")
-  let price = parseFloat(num);
-  console.log(price);
-  
-  let quantity = document.getElementById('quant');
-  let currentQ = quantity.value;
-  let numQ = parseInt(currentQ)
-  console.log(currentQ);
-
-  let subtot = document.getElementsByClassName('subtot');
-  subtot.innerText = "";
-  subtot[1].innerText = `$${numQ * price}`;
-
-  return `${numQ * price}`;
+  for (var i = 0; i < all.length; i++) {
+    let priceUnit = document.getElementsByClassName('pu');
+    let num = priceUnit[i].innerText;
+    
+    num = priceUnit[i].innerText.replace('$', "")
+    let price = parseFloat(num);
+    console.log(price);
+    
+    let quantity = document.getElementsByClassName('quant')[i];
+    let currentQ = quantity.value;
+    let numQ = parseInt(currentQ)
+    console.log(currentQ);
+    
+    let subtot = document.getElementsByClassName('subtot');
+    subtot.innerText = "";
+    subtot[i].innerText = `$${numQ * price}`;
+    
+    ar.push(numQ * price);
+  }
 }
 
 function calcAll() {
   // Iteration 1.2
-  let all = document.getElementsByClassName('product');
-  let ar = [];
 
-  let result = 0;
-  console.log(`ALL length is : ${all.length}`)
- 
-  for (var i = 0; i < all.length; i++) {
-    let t = updateSubtot(all)
-    result = all[i];
-  }
+  // let result = updateSubtot(all)
  
   // console.log(all);
-
-console.log(result);
+  updateSubtot(all);
 
   let total = document.getElementById('total');
 
-  // total.innerText = result; 
+  let result = ar.reduce((sum, num) => {
+    return sum + num;
+  })
+
+  total.innerText = result; 
+
+  ar.length = 0; 
 }
 
+function deleteRow(r) {
+
+  let i = r.parentNode.parentNode.rowIndex;
+  document.getElementById("cart").deleteRow(i);
+
+}
+
+
 $calc.onclick = calcAll;
+
+$delet.onclick = deleteRow;
