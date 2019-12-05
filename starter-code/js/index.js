@@ -1,6 +1,7 @@
 var $cart = document.querySelector('#cart tbody');
 var $calc = document.getElementById('calc');
-var $delet = document.getElementsByClassName('btn-delete');
+var $create = document.getElementById('create');
+
 let all = document.getElementsByClassName('product');
 let ar = []; 
 
@@ -47,13 +48,41 @@ function calcAll() {
 }
 
 function deleteRow(r) {
-
   let i = r.parentNode.parentNode.rowIndex;
   document.getElementById("cart").deleteRow(i);
-
 }
 
+function create (){
 
+  //Sets first TD to product
+  let product = document.getElementsByClassName('new')[0];
+  let ok = product.getAttributeNode('class');
+  product.removeAttributeNode(ok);
+
+  product.setAttribute('class', 'product');
+  console.log(product)
+  // product.removeAttribute('class');
+
+
+  //allows to delete
+  let create = document.getElementById('create');
+  
+  create.setAttribute('onclick', 'deleteRow(this)');
+  create.setAttribute('class', 'btn');
+  document.getElementById('create').className += " btn-delete";
+  create.removeAttribute('id');
+  create.innerText = "Delete";
+
+  //sets product name
+  let name = document.getElementsByTagName('td')[10];
+  console.log(name)
+  name.setAttribute('value', '');
+  name.setAttribute('class', 'name');
+  let content = document.getElementsByTagName('td')[10].value;
+  console.log(content)
+  document.getElementsByTagName('td')[10].innerHTML = content;
+}
+
+$create.onclick = create;
 $calc.onclick = calcAll;
 
-$delet.onclick = deleteRow;
