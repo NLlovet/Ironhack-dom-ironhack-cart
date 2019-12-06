@@ -52,36 +52,38 @@ function deleteRow(r) {
   document.getElementById("cart").deleteRow(i);
 }
 
-function create (){
-
-  //Sets first TD to product
-  let product = document.getElementsByClassName('new')[0];
-  let ok = product.getAttributeNode('class');
-  product.removeAttributeNode(ok);
-
-  product.setAttribute('class', 'product');
-  console.log(product)
-  // product.removeAttribute('class');
-
-
-  //allows to delete
-  let create = document.getElementById('create');
+function create() {
   
-  create.setAttribute('onclick', 'deleteRow(this)');
-  create.setAttribute('class', 'btn');
-  document.getElementById('create').className += " btn-delete";
-  create.removeAttribute('id');
-  create.innerText = "Delete";
 
-  //sets product name
-  let name = document.getElementsByTagName('td')[10];
-  console.log(name)
-  name.setAttribute('value', '');
-  name.setAttribute('class', 'name');
-  let content = document.getElementsByTagName('td')[10].value;
-  console.log(content)
-  document.getElementsByTagName('td')[10].innerHTML = content;
+  //let newTableRow = document.createElement('tr');
+  let tableRf = document.getElementById('taby-body');
+
+  // insert row at end
+  let newRow = tableRf.insertRow(-1);
+
+  let name = document.getElementsByTagName('input')[-1];
+  //creates each data set
+  for(var i = 0; i < 5; i++) {
+    let newCell = newRow.insertCell(i);
+    console.log(`${i} : ${newCell}`);
+    if(i == 0) {
+      newCell.innerHTML = name.innerHTML;
+    }  
+
+
+  }
+    
+  /*newTableRow.innerHTML = ('
+    <div>
+  ');*/
+  
+
+
+
+
 }
+
+
 
 $create.onclick = create;
 $calc.onclick = calcAll;
